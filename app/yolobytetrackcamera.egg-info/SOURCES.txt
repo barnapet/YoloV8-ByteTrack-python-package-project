@@ -1,4 +1,4 @@
-LICENSE.txt
+LICENSE
 README.md
 setup.py
 app/yolobytetrackcamera/__init__.py

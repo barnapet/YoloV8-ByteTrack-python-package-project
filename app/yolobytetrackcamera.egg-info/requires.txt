@@ -1,3 +1,6 @@
+opencv-python
+ultralytics
 
 [dev]
 pytest
+twine
