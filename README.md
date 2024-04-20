@@ -85,7 +85,7 @@ Notes:
 
 ## Acknowledgments
 
-This package relies on the Ultralytics library for its object detection and tracking functionalities.
+This package relies on the Ultralytics and Open-CV library for its object detection and tracking functionalities.
 
 ## System Requirements
 
