@@ -92,7 +92,6 @@ This package relies on the Ultralytics and Open-CV library for its object detect
 Ensure you have the following installed:
 
 - Python 3.x
-- OpenCV
 - YOLOv8-ByteTrack Camera package
 
 ## License
