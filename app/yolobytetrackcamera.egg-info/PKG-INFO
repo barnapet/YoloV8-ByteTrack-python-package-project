@@ -1,0 +1,88 @@
+Metadata-Version: 2.1
+Name: yolobytetrackcamera
+Version: 0.1
+Summary: A tracker package for easy use of YOLOv8-ByteTrack
+Home-page: https://github.com/barnapet00/YOLOv8-ByteTrack
+Author: BP
+Author-email: <barnapet00@gmail.com>
+License: MIT
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+
+# YOLOV8-ByteTrack Camera Package
+
+This Python package utilizes the Ultralytics library, specifically the YOLOv8 object detection and ByteTrack tracking algorithms.
+
+## Installation
+
+You can install the package via pip:
+
+```bash
+pip install yolobytetrackcamera
+```
+
+## Usage
+
+### live_tracking
+
+The `live_tracking` method initiates an immediate object detection and tracking process using the primary camera on the device with visual display.
+
+```python
+import argparse
+from yolobytetrackcamera import start_tracking_webcam
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="YOLOv8-ByteTrack Live Tracking")
+    parser.add_argument("model", type=int, choices=[1, 2, 3, 4, 5],
+                        help="The index of the selected YOLO model from 1 to 5")
+    args = parser.parse_args()
+    start_tracking_webcam(args.model)
+```
+To initiate live tracking, run the script and provide the index of the desired YOLOv8 model as a command-line argument. For example:
+
+```python
+python live_tracking.py 1
+```
+The model index should be between 1 and 5, corresponding to the available YOLOv8 models.
+
+| YOLOv8 Type | Number |
+|-------------|--------|
+| yolov8n     |   1    |
+| yolov8s     |   2    |
+| yolov8m     |   3    |
+| yolov8l     |   4    |
+| yolov8x     |   5    |
+
+### record_tracking
+
+The `record_tracking` method captures a video from a source and records a new video on the device with the object detection and tracking annotations.
+
+```python
+from yolobytetrackcamera import start_record_tracking
+
+start_record_tracking("input_video_path")
+```
+
+### video_tracking
+
+The `video_tracking` method performs a quick analysis with object detection and tracking annotations on a video file, displaying the results on the device where it is executed.
+
+```python
+from yolobytetrackcamera import start_video_tracking
+
+start_video_tracking("input_video_path")
+```
+
+## Acknowledgments
+
+This package relies on the Ultralytics library for its object detection and tracking functionalities.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
