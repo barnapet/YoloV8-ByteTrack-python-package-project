@@ -9,7 +9,12 @@ You can install the package via pip:
 ```bash
 pip install yolobytetrackcamera
 ```
+Alternatively, if pip installation is not available, you can download the package from the [Releases](link_to_releases_page) page. The package includes two files for installation:
 
+- `yolobytetrackcamera-0.1.tar.gz`
+- `yolobytetrackcamera-0.1-py3-none-any.whl`
+
+You can use these files for installation using the following command:
 ## Usage
 
 ### live_tracking
@@ -17,7 +22,6 @@ pip install yolobytetrackcamera
 The `live_tracking` method initiates an immediate object detection and tracking process using the primary camera on the device with visual display.
 
 ```python
-import argparse
 from yolobytetrackcamera import start_tracking_webcam
 
 start_tracking_webcam(1)
