@@ -37,18 +37,13 @@ The `live_tracking` method initiates an immediate object detection and tracking 
 import argparse
 from yolobytetrackcamera import start_tracking_webcam
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="YOLOv8-ByteTrack Live Tracking")
-    parser.add_argument("model", type=int, choices=[1, 2, 3, 4, 5],
-                        help="The index of the selected YOLO model from 1 to 5")
-    args = parser.parse_args()
-    start_tracking_webcam(args.model)
+start_tracking_webcam(1)
 ```
-To initiate live tracking, run the script and provide the index of the desired YOLOv8 model as a command-line argument. For example:
+Where:
+- `[model_index]` (int): The index of the selected YOLO model from 1 to 5.
 
-```python
-python live_tracking.py 1
-```
+Press 'q' to quit the tracking loop and close the window.
+
 The model index should be between 1 and 5, corresponding to the available YOLOv8 models.
 
 | YOLOv8 Type | Number |
@@ -66,8 +61,12 @@ The `record_tracking` method captures a video from a source and records a new vi
 ```python
 from yolobytetrackcamera import start_record_tracking
 
-start_record_tracking("input_video_path")
+start_record_tracking(selected_model=1, source_path="input_video_path", target_path="output_video_path")
 ```
+Where:
+- `selected_model` (int): The index of the selected YOLO model from 1 to 5.
+- `source_path` (str): The path to the input video file (without extension).
+- `target_path` (str): The path to save the output video file.
 
 ### video_tracking
 
@@ -76,12 +75,38 @@ The `video_tracking` method performs a quick analysis with object detection and 
 ```python
 from yolobytetrackcamera import start_video_tracking
 
-start_video_tracking("input_video_path")
+start_video_tracking(selected_model=1, source_path="input_video_path", target_path="output_video_path", conf=0.3, iou=0.5, tracker="custom_tracker.yaml")
 ```
+Where:
+- `[model_index]` (int): The index of the selected YOLO model from 1 to 5.
+- `[video_path]` (str): The path to the input video file.
+- `--conf` (float, optional): The confidence threshold for object detection. Defaults to 0.3.
+- `--iou` (float, optional): The IoU threshold for object tracking. Defaults to 0.5.
+- `--tracker` (str, optional): The name or path of the tracker configuration file. Defaults to "bytetrack.yaml".
+
+Parameters:
+- `model_index` (int): The index of the selected YOLO model from 1 to 5.
+- `video_path` (str): The path to the input video file.
+- `conf` (float, optional): The confidence threshold for object detection. Defaults to 0.3.
+- `iou` (float, optional): The IoU threshold for object tracking. Defaults to 0.5.
+- `tracker` (str, optional): The name or path of the tracker configuration file. Defaults to "bytetrack.yaml".
+
+Notes:
+- Ensure the video file exists at the specified path.
+- The script will display the annotated video frames with bounding boxes.
+- Press 'q' to quit the tracking loop.
 
 ## Acknowledgments
 
 This package relies on the Ultralytics library for its object detection and tracking functionalities.
+
+## System Requirements
+
+Ensure you have the following installed:
+
+- Python 3.x
+- OpenCV
+- YOLOv8-ByteTrack Camera package
 
 ## License
 
