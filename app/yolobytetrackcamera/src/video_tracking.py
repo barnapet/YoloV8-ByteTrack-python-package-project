@@ -19,10 +19,9 @@ def start_video_tracking(selected_model, path, conf=0.3, iou=0.5, tracker="bytet
     Returns:
         dict: A dictionary containing tracking results.
     """
+    model = model_choose(selected_model)
     try:
-        results = model_choose(selected_model).track(source=path, show=True, conf=conf,
-                                                     iou=iou, tracker=tracker)
-        return results
+        model.track(source=path, show=True, conf=conf, iou=iou, tracker=tracker)
     except Exception as e:
         print("Error: {}".format(e))
 

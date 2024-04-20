@@ -17,6 +17,7 @@ def start_tracking_webcam(selected_model):
     Returns:
         None
     """
+    model = model_choose(selected_model)
     try:
         cap = cv2.VideoCapture(0)
 
@@ -24,7 +25,7 @@ def start_tracking_webcam(selected_model):
             success, frame = cap.read()
             if success:
                 try:
-                    results = model_choose(selected_model).track(frame, persist=True)
+                    results = model.track(frame, persist=True)
                     annotated_frame = results[0].plot()
                     cv2.imshow("YOLOv8-ByteTrack Live Tracking", annotated_frame)
                     if cv2.waitKey(1) & 0xFF == ord("q"):

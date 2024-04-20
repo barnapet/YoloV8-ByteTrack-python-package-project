@@ -26,6 +26,15 @@ pip install yolobytetrackcamera-0.1-py3-none-any.whl
 
 The `live_tracking` method initiates an immediate object detection and tracking process using the primary camera on the device with visual display.
 
+#### Running from Terminal
+
+To start the `live_tracking` method from the terminal, use the following command:
+
+```python
+python -c "from yolobytetrackcamera import start_tracking_webcam; start_tracking_webcam(1)"
+```
+#### Running with Python code
+
 ```python
 from yolobytetrackcamera import start_tracking_webcam
 
@@ -50,6 +59,15 @@ The model index should be between 1 and 5, corresponding to the available YOLOv8
 
 The `record_tracking` method captures a video from a source and records a new video on the device with the object detection and tracking annotations.
 
+#### Running from Terminal
+
+To start the `record_tracking` method from the terminal, use the following command:
+
+```bash
+python -c "from yolobytetrackcamera import start_record_tracking; start_record_tracking(selected_model=1, source_path='input_video_path', target_path='output_video_path')"
+```
+#### Running with Python code
+
 ```python
 from yolobytetrackcamera import start_record_tracking
 
@@ -63,6 +81,15 @@ Where:
 ### video_tracking
 
 The `video_tracking` method performs a quick analysis with object detection and tracking annotations on a video file, displaying the results on the device where it is executed.
+
+#### Running from Terminal
+
+To start the `video_tracking` method from the terminal, use the following command:
+
+```bash
+python -c "from yolobytetrackcamera import start_video_tracking; start_video_tracking(selected_model=1, source_path='input_video_path', target_path='output_video_path', conf=0.3, iou=0.5, tracker='custom_tracker.yaml')"
+```
+#### Running with Python code
 
 ```python
 from yolobytetrackcamera import start_video_tracking

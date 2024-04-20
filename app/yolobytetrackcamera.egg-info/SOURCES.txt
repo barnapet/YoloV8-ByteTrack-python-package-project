@@ -13,6 +13,7 @@ app/yolobytetrackcamera/src/record_tracking.py
 app/yolobytetrackcamera/src/video_tracking.py
 app/yolobytetrackcamera/src/utils/__init__.py
 app/yolobytetrackcamera/src/utils/act_model.py
+app/yolobytetrackcamera/src/utils/create_custom_model.py
 app/yolobytetrackcamera/test/__init__.py
 app/yolobytetrackcamera/test/test_live_tracking.py
 app/yolobytetrackcamera/test/test_record_tracking.py
