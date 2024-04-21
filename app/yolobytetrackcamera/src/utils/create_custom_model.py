@@ -1,9 +1,13 @@
-from ultralytics import YOLO
-from roboflow import Roboflow
+from act_model import model_choose
 
-rf = Roboflow(api_key="kLYx9ha9722jBsrfr8p7")
-project = rf.workspace("pothole-dataset-kwweo").project("bp-pothole-detection-project")
-version = project.version(2)
+def create_custom_model(selected_model, *args, **kwargs):
+    model = model_choose(selected_model)
+    model = model.load('yolov8n.pt')
+    data = kwargs.get('data', 'coco8.yaml')
+    epochs = kwargs.get('epochs', 10)
+    imgsz = kwargs.get('imgsz', 640)
+    training_params = {}
+    results = model.train(data=data, epochs=epochs, imgsz=imgsz, **training_params)
+    return results
 
-model = YOLO('yolov8n.yaml').load('yolov8n.pt')  # build from YAML and transfer weights
-results = model.train(data='coco8.yaml', epochs=10, imgsz=640)
+create_custom_model(1, epochs=15, imgsz=320, lr=0.0001)
