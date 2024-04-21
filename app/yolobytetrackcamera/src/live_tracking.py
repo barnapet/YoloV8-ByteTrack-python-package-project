@@ -20,7 +20,6 @@ def start_tracking_webcam(selected_model):
     model = model_choose(selected_model)
     try:
         cap = cv2.VideoCapture(0)
-
         while True:
             success, frame = cap.read()
             if success:

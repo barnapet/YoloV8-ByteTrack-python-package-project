@@ -21,30 +21,21 @@ def start_record_tracking(selected_model, source_path, target_path):
         None
     """
     try:
-        # Load the selected model
         model = model_choose(selected_model)
-
-        # Open the source video
         video = cv2.VideoCapture(source_path + ".mp4")
         if not video.isOpened():
             raise Exception(f"Error opening video file: {source_path}.mp4")
-
-        # Get video properties
         fps = video.get(cv2.CAP_PROP_FPS)
         width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
-
-        # Define video writer
         fourcc = cv2.VideoWriter_fourcc(*'MP4V')
         output_filename = f"{target_path}-with-yolobytetrackcamera-{gen_timestamp()}.mp4"
         out = cv2.VideoWriter(output_filename, fourcc, fps, (width, height))
 
         while video.isOpened():
             success, frame = video.read()
-
             if success:
                 try:
-                    # Process frame and get annotated frame
                     results = model.track(frame, persist=True)
                     annotated_frame = results[0].plot()
                     cv2.imshow("YOLOv8 Tracking", annotated_frame)
@@ -52,7 +43,6 @@ def start_record_tracking(selected_model, source_path, target_path):
                         break
                 except Exception as e:
                     print(f"Error processing frame: {e}")
-
             else:
                 print("Error reading video")
                 break
@@ -60,7 +50,6 @@ def start_record_tracking(selected_model, source_path, target_path):
     except Exception as e:
         print(f"General error: {e}")
     finally:
-        # Release resources regardless of errors
         video.release()
         out.release()
         cv2.destroyAllWindows()
