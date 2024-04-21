@@ -30,7 +30,7 @@ The `live_tracking` method initiates an immediate object detection and tracking 
 
 To start the `live_tracking` method from the terminal, use the following command:
 
-```python
+```bash
 python -c "from yolobytetrackcamera import start_tracking_webcam; start_tracking_webcam(1)"
 ```
 #### Running with Python code
@@ -115,6 +115,45 @@ Notes:
 - The script will display the annotated video frames with bounding boxes.
 - Press 'q' to quit the tracking loop.
 
+### Util for custom model creating
+
+The create_custom_model function provides a convenient way to train a custom 
+object detection model using the Ultralytics YOLOv8 framework. 
+It allows you to specify the model architecture, training data, training 
+parameters, and other options.
+
+#### Default Parameters
+
+Below are the default parameters:
+
+- `data` (str, default='coco8.yaml'): COCO8 is default data.
+- `epochs` (int, default=10): Number of training epochs.
+- `imgsz` (int, default=640): Input image size in pixels.
+
+#### Usage from terminal
+
+```bash
+python -c "from yolobytetrackcamera import create_custom_model; create_custom_model(
+    selected_model=1,
+    data='custom_data.yaml',
+    epochs=15,
+    imgsz=320,
+    # Add any additional training parameters from 
+    # [YOLO train documents](https://docs.ultralytics.com/modes/train/#train-settings))"
+```
+#### Usage with Python code
+```python
+from yolobytetrackcamera import create_custom_model
+
+create_custom_model(
+    selected_model=1,
+    data='custom_data.yaml',
+    epochs=15,
+    imgsz=320,
+    # Add any additional training parameters from 
+    # [YOLO train documents](https://docs.ultralytics.com/modes/train/#train-settings)
+)
+```
 ## Acknowledgments
 
 This package relies on the Ultralytics and Open-CV library for its object detection and tracking functionalities.

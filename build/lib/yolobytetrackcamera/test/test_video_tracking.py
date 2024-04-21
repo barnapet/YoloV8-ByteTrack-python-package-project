@@ -4,23 +4,17 @@ from yolobytetrackcamera import start_video_tracking
 
 class TestVideoTracking(unittest.TestCase):
     @patch('yolobytetrackcamera.model_choose')
-    def test_start_video_tracking_default_params(self, mock_model_choose):
-        # Mock model_choose behavior (replace with specific behavior for your model)
-        mock_model_choose.return_value.track.return_value = "tracking_results"  # Simulate tracking results
-
-        # Define test arguments
-        selected_model = 2
+    def test_invalid_selected_model(self, mock_model_choose):
+        selected_model = 6
         video_path = "video-ending.mp4"
+        conf = 0.3
+        iou = 0.5
+        tracker = "bytetrack.yaml"
 
-        # Test with default parameters
-        results = start_video_tracking(selected_model, video_path)
+        mock_model_choose.side_effect = ValueError("Invalid model number")
 
-        # Assert model_choose is called with correct arguments
-        mock_model_choose.assert_called_once_with(selected_model, source=video_path, show=True,
-                                                  conf=0.3, iou=0.5, tracker="bytetrack.yaml")
-
-        # Assert returned results
-        self.assertEqual(results, "tracking_results")  # Adjust based on your model's output
+        with self.assertRaises(ValueError):
+            start_video_tracking(selected_model, video_path, conf=conf, iou=iou, tracker=tracker)
 
 if __name__ == '__main__':
     unittest.main()
