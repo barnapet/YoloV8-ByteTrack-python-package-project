@@ -1,0 +1,8 @@
+name: yolobytetrackcamera_env  # Környezet neve
+
+dependencies:
+  - python=3.8
+  - pip
+  - setuptools
+  - opencv-python
+  - ultralytics
